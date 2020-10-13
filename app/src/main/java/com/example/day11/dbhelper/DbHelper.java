@@ -24,7 +24,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_SQLITE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTO INCREMENT, " + COLUMN_NAME + " TEXT NOT NULL, " +COLUMN_ADDRESS + " TEXT NOT NULL)";
+        final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_SQLITE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT NOT NULL, " +COLUMN_ADDRESS + " TEXT NOT NULL)";
         db.execSQL(SQL_CREATE_TABLE);
     }
 
@@ -57,7 +57,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void insert(String nama, String address){
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryinsert = "INSERT INTO "+ TABLE_SQLITE + "(" + nama +"," + address  +") " +
+        String queryinsert = "INSERT INTO "+ TABLE_SQLITE + "(" + COLUMN_NAME +"," + COLUMN_ADDRESS +") " +
                 "VALUES ('" + nama +"','"+address+"')";
         Log.e("insert sqlite",""+queryinsert);
         db.execSQL(queryinsert);
@@ -68,8 +68,8 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String updatequery = "UPDATE "+ TABLE_SQLITE + " SET "
                 + COLUMN_NAME + "='" + nama + "',"
-                + COLUMN_ADDRESS + "='" + address + "',"
-                + "WHERE " + COLUMN_ID + "='" + "'" + id + "'";
+                + COLUMN_ADDRESS + "='" + address + "' "
+                + "WHERE " + COLUMN_ID + "='"  + id + "'";
         Log.e("update querty",""+updatequery);
         db.execSQL(updatequery);
         db.close();
@@ -77,7 +77,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void delete(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        String deletequery = "DELETE FORM "+ TABLE_SQLITE + " WHERE "
+        String deletequery = "DELETE FROM "+ TABLE_SQLITE + " WHERE "
                 + COLUMN_ID + "='" + id + "'";
         Log.e("delete query",""+deletequery);
         db.execSQL(deletequery);

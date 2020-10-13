@@ -45,7 +45,7 @@ public class Adapter extends BaseAdapter {
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         if(convertView == null){
-            inflater.inflate(R.layout.list_row, null);
+           convertView = inflater.inflate(R.layout.list_row, null);
         }
 
         TextView id = convertView.findViewById(R.id.id);
